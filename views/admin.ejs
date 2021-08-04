@@ -1,0 +1,45 @@
+<%- include('inc/adminHeader') %> <!--including the header file from the inc folder -->
+<%- include('inc/adminNav') %>  <!--including the navigation file from the inc folder -->
+<div class="container-fluid">
+  <div class="row">
+    
+    <%- include('./inc/adminSidebar') %>  <!--including the admin sidebar file from the inc folder -->
+
+    <main id="mainBody" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Header</th>
+                  <th scope="col">Header</th>
+                  <th scope="col">Header</th>
+                  <th scope="col">Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>random</td>
+                  <td>data</td>
+                  <td>placeholder</td>
+                  <td>text</td>
+                </tr>
+                
+                <tr>
+                  <td>1,007</td>
+                  <td>placeholder</td>
+                  <td>tabular</td>
+                  <td>information</td>
+                  <td>irrelevant</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </main>
+  </div>
+</div>
+<%- include('./inc/adminFooter') %> <!--including the footer file from the inc folder -->
