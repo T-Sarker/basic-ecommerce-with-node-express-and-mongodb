@@ -6,20 +6,22 @@ const PageSchema = new mongoose.Schema({
 
     title:{
         type:String,
-        required: "Title can't be empty"
+        required: true
     },
     slug:{
         type: String,
     },
     content:{
         type: String,
-        required: "Content can't be empty"
+        required: true
     },
     shorting:{
         type: Number
     }
+},{
+    timestamps: true
 })
 
 const pageModel = mongoose.model('page',PageSchema)
 
-exports.module = pageModel
+module.exports = pageModel

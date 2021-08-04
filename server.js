@@ -14,6 +14,7 @@ const app = express()
 
 // creating some global variables 
 app.locals.errorList = null
+app.locals.formData =null
 
 //**other dafinations for to work on express */
 
@@ -59,7 +60,7 @@ app.use(function (req, res, next) {
 
 // routing 
 app.use('/',router)
-app.use('/admin',adminRouter)
+app.use('/admin/',adminRouter)
 
 app.get('/',async (req,res)=>{
     const allBlog = await blog.find()

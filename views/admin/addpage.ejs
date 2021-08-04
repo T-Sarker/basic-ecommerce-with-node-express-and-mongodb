@@ -12,20 +12,19 @@
       <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Add Page</h1>
         <div class="container">
-          <% if (errorList) { %>
-             <% errorList.errors.forEach(function(error) { console.log(); %>
-               
-              
-              <div class="alert alert-danger">
-                <%= error.msg %>
-              </div>
-            <% }); %>
-
-          <% } %>
+          <a href="/admin/pagelist" class="btn btn-info">Goto page list</a>
+         
           <form action="/admin/addpage" method="POST" class="mt-4">
             <div class="mb-3">
               <label for="title" class="form-label">Title </label>
-              <input type="text" name="title" id="title" class="form-control" placeholder="Enter Page Title">
+              <input type="text" name="title" id="title" class="form-control" placeholder="Enter Page Title" value="<%- formData!=null?formData.title:''%>">
+              <% if (errorList) { %>
+              <% if (errorList.title) { %>
+              <div class="alert alert-danger">
+                <%= errorList.title.msg %>
+              </div>
+              <% } %>
+              <% } %>
             </div>
 
             <div class="mb-3">
@@ -35,7 +34,14 @@
 
             <div class="mb-3">
               <label for="content" class="form-label">Content</label>
-              <textarea name="content" id="content" class="form-control" placeholder="Enter Page content"></textarea>
+              <textarea name="content" id="content" class="form-control" placeholder="Enter Page content"><%- formData!=null?formData.content:''%></textarea>
+              <% if (errorList) { %>
+                <% if (errorList.content) { %>
+                <div class="alert alert-danger">
+                  <%= errorList.content.msg %>
+                </div>
+                <% } %>
+                <% } %>
             </div>
 
             <div class="mb-3">
