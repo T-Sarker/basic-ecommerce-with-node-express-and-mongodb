@@ -1,0 +1,55 @@
+<%- include('../inc/adminHeader') %>
+<!--including the header file from the inc folder -->
+<%- include('../inc/adminNav') %>
+<!--including the navigation file from the inc folder -->
+<div class="container-fluid">
+  <div class="row">
+
+    <%- include('../inc/adminSidebar') %>
+    <!--including the admin sidebar file from the inc folder -->
+
+    <main id="mainBody" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Page List</h1>
+        <div class="container">
+          <a href="/admin/addcategory" class="btn btn-info mb-5">Add Category </a>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% i=1  %>
+              <% if (categories) { %>
+
+              <% categories.forEach(category => { %>
+              <tr>
+
+                <th scope="row"><%= i %> </th>
+                <td><img style="width: 40%;" src="/uploads/<%= category.icon %>" alt=""></td>
+                <td><%= category.name %> </td>
+                <td><%= category.slug %> </td>
+                <td>
+                  <a href="/admin/editcategory/<%= category._id %> " class="btn btn-warning">Edit</a>
+                  <a href="/admin/deletecat/<%= category._id %> " class="btn btn-danger" onclick="return confirm('Are you sure you want to Remove?');">Delete</a>
+                </td>
+              </tr>
+              <% i++ %>
+              <% }) %>
+              <%  } %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!--including the footer file from the inc folder -->
+<%- include('../inc/adminFooter') %>

@@ -1,0 +1,44 @@
+<%- include('../inc/adminHeader') %>
+<!--including the header file from the inc folder -->
+<%- include('../inc/adminNav') %>
+<!--including the navigation file from the inc folder -->
+<div class="container-fluid">
+  <div class="row">
+
+    <%- include('../inc/adminSidebar') %>
+    <!--including the admin sidebar file from the inc folder -->
+
+    <main id="mainBody" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Add Category</h1>
+        <div class="container">
+          <a href="/admin/categorylist" class="btn btn-info">Goto Category List</a>
+         
+          <form action="/admin/addcategory" method="POST" enctype="multipart/form-data" class="mt-4">
+            <div class="mb-3">
+              <label for="category" class="form-label">Category Name</label>
+              <input type="text" name="category" id="category" class="form-control" placeholder="Enter category">
+            </div>  
+
+            <div class="mb-3">
+              <label for="image" class="form-label">Catgory Image</label>
+              <input type="file" name="image" id="image" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="slug" class="form-label">Slug</label>
+              <input type="text" name="slug" id="slug" class="form-control" placeholder="Enter Page slug">
+            </div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!--including the footer file from the inc folder -->
+<%- include('../inc/adminFooter') %>
