@@ -120,10 +120,8 @@ exports.updatePage = async (req, res) => {
     const id = req.body.id
 
     const errors = validationResult(req)
-    // console.log(errors);
 
     if (errors.errors.length > 0) {
-        // console.log(errors.mapped());
         req.flash('danger', 'Sorry, Data Insertion failed')
         return res.redirect('/admin/editpage/' + id)
 

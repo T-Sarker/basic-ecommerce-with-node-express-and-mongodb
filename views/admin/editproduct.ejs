@@ -1,0 +1,127 @@
+<%- include('../inc/adminHeader') %>
+<!--including the header file from the inc folder -->
+<%- include('../inc/adminNav') %>
+<!--including the navigation file from the inc folder -->
+<div class="container-fluid">
+  <div class="row">
+
+    <%- include('../inc/adminSidebar') %>
+    <!--including the admin sidebar file from the inc folder -->
+    <main id="mainBody" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Edit Product</h1>
+        <div class="container">
+          <a href="/admin/productlist" class="btn btn-info">Goto Product List</a>
+          <% if (product) { %>
+          <form action="/admin/editproduct" method="POST" enctype="multipart/form-data" class="mt-4">
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" name="name" id="name" class="form-control" value="<%- product.name!=''? product.name:''%>">
+              <input type="hidden" name="id" value="<%= product._id %>">
+              <% if (errorList) { %>
+              <% if (errorList.name) { %>
+              <p class="alert alert-danger"><%= errorList.name.msg %> </p>
+              <% } %>
+              <% } %>
+            </div>
+
+            <div class="mb-3">
+              <label for="images" class="form-label">Product Images</label>
+              <input type="file" name="images" id="images" accept="image/*" class="form-control" multiple>
+              <div id="previewer"></div>
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+
+                <div class="col">
+                  <label for="category" class="form-label">Category</label>
+                  <select id="category" name="category" class="form-control">
+                    <option disabled>Choose...</option>
+                    <% if (formData) { %>
+                    <% formData.categories.forEach(category => { %>
+                    <option value="<%= category.slug %>" <%- product.category==category.slug? 'selected':''%> class="list-group-item"><%= category.name %> </option>
+                    <% }) %>
+                    <% } %>
+
+                  </select>
+                </div>
+
+                <div class="col">
+                  <label for="price" class="form-label">Price</label>
+                  <input type="text" name="price" id="price" class="form-control"  value="<%- product.price!=''? product.price:''%>">
+                  <% if (errorList) { %>
+                  <% if (errorList.price) { %>
+                  <p class="alert alert-danger"><%= errorList.price.msg %> </p>
+                  <% } %>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+                <div class="col">
+                  <label for="oldPrice" class="form-label">Old Price</label>
+                  <input type="text" name="oldPrice" id="oldPrice" class="form-control"  value="<%- product.oldPrice!=''? product.oldPrice:''%>">
+                </div>
+                <div class="col">
+                  <label for="quantity" class="form-label">Quantity</label>
+                  <input type="number" name="quantity" id="quantity" class="form-control" value="<%- product.quantity!=''? product.quantity:''%>">
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Product Description</label>
+              <textarea class="form-control ckeditor" id="description" name="description" rows="3">
+                <%- product.description!=''? product.description:''%>
+              </textarea>
+              <% if (errorList) { %>
+              <% if (errorList.description) { %>
+              <p class="alert alert-danger"><%= errorList.description.msg %> </p>
+              <% } %>
+              <% } %>
+            </div>
+
+            <div class="mb-3">
+              <label for="features" class="form-label">Product Feature</label>
+              <textarea class="form-control ckeditor" id="features" name="features" rows="3">
+                <%- product.features!=''? product.features:''%>
+              </textarea>
+              <% if (errorList) { %>
+              <% if (errorList.features) { %>
+              <p class="alert alert-danger"><%= errorList.features.msg %></p>
+              <% } %>
+              <% } %>
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+                <div class="col">
+                  <label for="sizes" class="form-label">Sizes</label>
+                  <input type="text" name="sizes" id="sizes" class="form-control"  value="<%- product.sizes!=''? product.sizes:''%>">
+                </div>
+                <div class="col">
+                  <label for="colors" class="form-label">Colors</label>
+                  <input type="text" name="colors" id="colors" class="form-control"  value="<%- product.color!=''? product.color:''%>">
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+          <% }else{ %>
+          <h3 class="alert alert-danger">Sorry No Product found</h3>
+          <% }  %>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!--including the footer file from the inc folder -->
+<%- include('../inc/adminFooter') %>

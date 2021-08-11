@@ -1,0 +1,60 @@
+<%- include('../inc/adminHeader') %>
+<!--including the header file from the inc folder -->
+<%- include('../inc/adminNav') %>
+<!--including the navigation file from the inc folder -->
+<div class="container-fluid">
+  <div class="row">
+
+    <%- include('../inc/adminSidebar') %>
+    <!--including the admin sidebar file from the inc folder -->
+
+    <main id="mainBody" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Page List</h1>
+        <div class="container">
+          <a href="/admin/addproduct" class="btn btn-info mb-5">Add Product </a>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% i=1  %>
+              <% if (products !=null) { %>
+
+              <% products.forEach(product => { %>
+              <tr>
+
+                <th scope="row"><%= i %> </th>
+                <td><img style="width: 80px;" src="/uploads/<%= product.images[0] %>" alt=""></td>
+                <td><%= product.name %> </td>
+                <td><%= product.quantity %> </td>
+                <td><%= product.category.replace('-',' ') %> </td>
+                <td><%= product.price %> </td>
+                <td>
+                  <a href="/admin/editproduct/<%= product._id %> " class="btn btn-warning"><i class="far fa-edit"></i></a>
+                  <a href="/admin/deletepro/<%= product._id %> " class="btn btn-danger" onclick="return confirm('Are you sure you want to Remove?');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+              <% i++ %>
+              <% }) %>
+              <%  }else{ %>
+                <h4>No products Found</h4>
+                <% }  %> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!--including the footer file from the inc folder -->
+<%- include('../inc/adminFooter') %>

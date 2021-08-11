@@ -14,9 +14,9 @@ $(document).ready(function() {
     
 
 	//////////////////////// Prevent closing from click inside dropdown
-    $(document).on('click', '.dropdown-menu', function (e) {
-      e.stopPropagation();
-    });
+    // $(document).on('click', '.dropdown-menu', function (e) {
+    //   e.stopPropagation();
+    // });
 
 
     $('.js-check :radio').change(function () {
@@ -51,6 +51,26 @@ $(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip()
 	} // end if
 
+//showing image when selected
+    function readURL(input) {
+        for(var i =0; i< input.files.length; i++){
+            if (input.files[i]) {
+               var reader = new FileReader();
+   
+               reader.onload = function (e) {
+                  var img = $('<img id="dynamic" style="width:50px;height:50px;margin-top:10px;">');
+                  img.attr('src', e.target.result);
+                  img.appendTo('#previewer');  
+               }
+               reader.readAsDataURL(input.files[i]);
+              }
+           }
+       }
+   
+       $("#images").change(function(){
+           readURL(this);
+       });
+   
 
 
 
