@@ -4,7 +4,7 @@
 $(document).ready(function() {
 	// jQuery code
 
-
+   
     /* ///////////////////////////////////////
 
     THESE FOLLOWING SCRIPTS ONLY FOR BASIC USAGE, 

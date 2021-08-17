@@ -1,0 +1,89 @@
+<%- include('../inc/header') %>
+<!--including the header file from the inc folder -->
+
+<%- include('../inc/nav') %>
+<!--including the navigation file from the inc folder -->
+
+<div class="container">
+  <div class="categoryProductsWrapper">
+    <div class="mt-5">
+      <hr>
+    </div>
+    <div class="row">
+      <h3>Filter Options</h3>
+      <div class="col-md-2 col-lg-2 col-sm-12">
+        
+        <ul class="list-group">
+          <li class="list-group-item disabled"><b>Filter By Price</b></li>
+          <li class="list-group-item"><input type="radio" name="radiobtn" class="filter" data="High-low" style="margin-right:10px">High-low </li>
+          <li class="list-group-item"><input type="radio" name="radiobtn" class="filter" data="Low-High" style="margin-right:10px">Low-High</li>
+        </ul>
+        <hr>
+
+        <ul class="list-group">
+          <li class="list-group-item disabled"><b>Filter By Sizes</b></li>
+          <li class="list-group-item"><input type="radio" style="margin-right:20px" class="filter" name="radioSize" value="S">S</li>
+          <li class="list-group-item"><input type="radio" style="margin-right:20px" class="filter" name="radioSize" value="M">M</li>
+          <li class="list-group-item"><input type="radio" style="margin-right:20px" class="filter" name="radioSize" value="L">L</li>
+          <li class="list-group-item"><input type="radio" style="margin-right:20px" class="filter" name="radioSize" value="XL">XL</li>
+          <li class="list-group-item"><input type="radio" style="margin-right:20px" class="filter" name="radioSize" value="XXL">XXL</li>
+        </ul>
+
+        <hr>
+
+        <ul class="list-group">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li>
+        </ul>
+      </div>
+      <div class="col-md-10 col-lg-10 col-sm-12">
+        <div class="allProducts">
+          <div class="row" id="plist">
+            <% if (products) { %>
+            <% products.forEach(product => { %>
+              <p class="d-none pCat" data=" <%= product.category %>"></p>
+            <div class="col-md-3">
+              <div href="#" class="card card-product-grid">
+                <a href="#" class="img-wrap"> <img src="/uploads/<%= product.images[0] %> "> </a>
+                <figcaption class="info-wrap">
+                  <a href="#" class="title" style="text-decoration:none">
+                    <%= product.name %>
+                  </a>
+
+                  <div class="rating-wrap">
+                    <ul class="rating-stars">
+                      <li style="width:80%" class="stars-active">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                          class="fa fa-star"></i><i class="fa fa-star"></i>
+                      </li>
+                      <li>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                          class="fa fa-star"></i><i class="fa fa-star"></i>
+                      </li>
+                    </ul>
+                    <span class="label-rating text-muted"> 34 reviws</span>
+                  </div>
+                  <div class="price mt-1"><b>৳</b> <%= product.price %></div> <!-- price-wrap.// -->
+                </figcaption>
+              </div>
+            </div>
+            <% }) %>
+            <% } else if (error) { %>
+              <%= error %> 
+            <% } %>
+            <!-- col.// -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+</script>
+<%- include('../inc/footer') %>
+<!--including the footer file from the inc folder -->

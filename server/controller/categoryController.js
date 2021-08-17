@@ -69,26 +69,29 @@ exports.update = async (req,res)=>{
     try {
         const id = req.body.id.trim()
         const data = await catModel.findById({_id:id})
+        console.log(data);
         const filepath = 'public/uploads/'+data.icon
         var slugl = req.body.slug == '' ? req.body.category.replace(/\s+/g, '-').toLowerCase() : req.body.slug.replace(' ', '-').toLowerCase()
         
-        const cat = await catModel.findByIdAndUpdate(id,{name:req.body.category,icon:req.file.filename,slug:slugl},(err,res)=>{
+        const cat = await catModel.findByIdAndUpdate(id,{name:req.body.category,icon:req.file.filename,slug:slugl},(err,r)=>{
             if (err) {
+                console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
                 req.flash('danger', 'Sorry, Something occured while Updating category')
-                res.render('admin/addcategory', {
+                res.render('admin/editcategorynn/'+id, {
                     formData: {
                         category: req.body.category
                     }
-                })
+                }) 
             } else {
                 fs.unlinkSync(filepath);
-                return res.redirect('/admin/categorylist')
+                res.redirect('/admin/categorylist')
             }
         })
         
     } catch (error) {
-        req.flash('danger', 'Sorry, Something occured while Updating category')
-        res.render('admin/addcategory', {
+        const id = req.body.id.trim()
+        req.flash('danger', 'Sorry, Something occured while Updating categoryxc')
+        return res.render('admin/jjjcategory/', {
             formData: {
                 category: req.body.category
             }

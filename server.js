@@ -7,14 +7,37 @@ const expressValidator = require('express-validator')
 
 //**adding the router file  */
 
-const router = require('./routes/router')
-const adminRouter = require('./routes/adminRoutes')
+const router = require('./routes/router');
+const adminRouter = require('./routes/adminRoutes');
+const pageRouter = require('./routes/pagesRoutes');
 
 const app = express()
 
 // creating some global variables 
 app.locals.errorList = null
 app.locals.formData =null
+app.locals.title =null
+
+//getting the pages and categories from model and assign the values in local constants
+const Pages = require('./server/models/PageModels')
+const Categories = require('./server/models/categoryModel')
+
+Pages.find({}).sort({shorting:1}).exec((err,pagesList)=>{
+  if (err) {
+    console.log(err);
+  } else {
+    app.locals.pages = pagesList
+  }
+})
+
+Categories.find({}).exec((err,catList)=>{
+  if (err) {
+    console.log(err);
+  } else {
+    app.locals.categories = catList
+  }
+})
+
 
 //**other dafinations for to work on express */
 
@@ -61,8 +84,5 @@ app.use(function (req, res, next) {
 // routing 
 app.use('/',router)
 app.use('/admin/',adminRouter)
+app.use('/pages/',pageRouter)
 
-app.get('/',async (req,res)=>{
-    const allBlog = await blog.find()
-    res.render('index',{'blogs':allBlog})
-})

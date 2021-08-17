@@ -1,0 +1,10 @@
+<%- include('./inc/header') %> <!--including the header file from the inc folder -->
+
+<%- include('inc/nav') %>  <!-- including the navigation file from the inc folder -->
+
+<div class="container">
+    <% if (page) { console.log(page.content); %>
+        <h2><%- page.content %></h2> 
+       <% } %>
+</div>
+<%- include('./inc/footer') %> <!--including the footer file from the inc folder -->
