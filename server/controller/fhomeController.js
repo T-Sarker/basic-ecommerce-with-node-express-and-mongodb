@@ -3,14 +3,25 @@
 const proModel = require('../models/ProductModel')
 
 exports.home = async (req,res)=>{
-    
-    
-    var proList = await proModel.find({}).sort({createdAt:-1})
-
-    
-    res.render('index',{
-        // pages: pageList,
-        // categories: catList,
-        products: proList
-    })
+    var cartVal =0
+    // res.clearCookie('cartData')
+    if (req.cookies['cartData']!=undefined) {
+        cartVal = req.cookies['cartData'].split(',').length
+        var proList = await proModel.find({}).sort({createdAt:-1})
+        // var ln = req.headers.cookie.cartData.split(' ')
+            
+        res.render('index',{
+            cart:cartVal,
+            formData: proList,
+            
+        })
+    }else{
+        var proList = await proModel.find({}).sort({createdAt:-1})
+        // var ln = req.headers.cookie.cartData.split(' ')
+            
+        res.render('index',{
+            formData: proList,
+            
+        })
+    }
 }

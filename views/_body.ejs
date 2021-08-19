@@ -66,12 +66,13 @@
 
 
         <div class="row">
-            <% if (products) { %>
-             <% products.forEach(product => { %>
+            <% if (formData) { %>
+             <% formData.forEach(product => { %>
                 <div class="col-md-3">
                     <div href="#" class="card card-product-grid">
                         <a href="#" class="img-wrap"> <img src="uploads/<%= product.images[0] %> "> </a>
                         <figcaption class="info-wrap">
+
                             <a href="#" class="title" style="text-decoration:none">
                                 <%= product.name %> 
                             </a>
@@ -89,7 +90,11 @@
                                 </ul>
                                 <span class="label-rating text-muted"> 34 reviws</span>
                             </div>
-                            <div class="price mt-1"><b>৳</b> <%= product.price %></div> <!-- price-wrap.// -->
+                            <div class="price mt-1 d-flex">
+                                <div><b>৳</b> <%= product.price %></div>
+                                <button class="btn btn-info addToCart" style="margin-left: auto;" id="pdct<%= product._id %>" >addToCart</button>
+                            </div> <!-- price-wrap.// -->
+                            
                         </figcaption>
                     </div>
                 </div>
